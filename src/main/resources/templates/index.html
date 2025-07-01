@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+<body>
+
+<h1>Todo App</h1>
+
+<!-- Form to create new todo -->
+<div>
+    <form th:action="@{/}" th:object="${newTodo}" method="post">
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" th:field="*{description}"></textarea>
+        </div>
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+<!-- List of todos -->
+<h2>Todo List</h2>
+<ul>
+    <li th:each="todo : ${todos}">
+        <div th:text="${todo.description}"></div>
+        <form th:action="@{/toggle/{id}(id=${todo.getId()})}" method="post">
+            <input type="hidden" name="id" th:value="${todo.id}"/>
+            <button type="submit">
+                <span th:text="${todo.status == 'DONE'} ? 'Done' : 'Undone'"></span>
+            </button>
+        </form>
+    </li>
+</ul>
+</body>
+</html>
