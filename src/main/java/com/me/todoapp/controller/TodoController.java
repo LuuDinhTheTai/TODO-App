@@ -19,7 +19,6 @@ public class TodoController {
     @GetMapping
     public String index(Model model) {
         model.addAttribute("todos", todoService.list());
-        model.addAttribute("newTodo", new Todo());
         return "index";
     }
 

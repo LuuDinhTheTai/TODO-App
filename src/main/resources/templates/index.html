@@ -11,10 +11,10 @@
 
 <!-- Form to create new todo -->
 <div>
-    <form th:action="@{/}" th:object="${newTodo}" method="post">
+    <form th:action="@{/}" method="post">
         <div>
             <label for="description">Description:</label>
-            <textarea id="description" th:field="*{description}"></textarea>
+            <textarea id="description" name="description"></textarea>
         </div>
         <button type="submit">Add</button>
     </form>

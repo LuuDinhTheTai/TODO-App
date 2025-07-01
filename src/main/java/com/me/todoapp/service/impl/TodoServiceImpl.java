@@ -1,7 +1,8 @@
-package com.me.todoapp.service;
+package com.me.todoapp.service.impl;
 
 import com.me.todoapp.entity.Todo;
 import com.me.todoapp.repository.TodoRepository;
+import com.me.todoapp.service.TodoService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,5 +39,6 @@ public class TodoServiceImpl implements TodoService {
     } else {
       todo.setStatus("DONE");
     }
+    todoRepository.save(todo);
   }
 }

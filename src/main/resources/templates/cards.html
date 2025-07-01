@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cards</title>
+</head>
+<body>
+
+<!-- Add Card Form -->
+<div>
+    <h2>Add New Card</h2>
+    <form action="/cards" method="post">
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+        </div>
+        <div>
+            <button type="submit">Add</button>
+        </div>
+    </form>
+</div>
+
+<h1>Cards</h1>
+
+<div>
+    <!-- TODO Column -->
+    <div>
+        <div>TODO</div>
+        <div th:each="card : ${todoCards}">
+            <div th:text="${card.title}"></div>
+            <div th:text="${card.description}"></div>
+            <div th:if="${card.dueDate}" th:text="'Due: ' + ${#temporals.format(card.dueDate, 'yyyy-MM-dd')}"></div>
+            <a th:href="@{/cards/{id}(id=${card.id})}">
+                <button type="button">Details</button>
+            </a>
+        </div>
+    </div>
+
+    <!-- DOING Column -->
+    <div>
+        <div>DOING</div>
+        <div th:each="card : ${doingCards}">
+            <div th:text="${card.title}"></div>
+            <div th:text="${card.description}"></div>
+            <div th:if="${card.dueDate}" th:text="'Due: ' + ${#temporals.format(card.dueDate, 'yyyy-MM-dd')}"></div>
+            <a th:href="@{/cards/{id}(id=${card.id})}">
+                <button type="button">Details</button>
+            </a>
+        </div>
+    </div>
+
+    <!-- DONE Column -->
+    <div>
+        <div>DONE</div>
+        <div th:each="card : ${doneCards}">
+            <div th:text="${card.title}"></div>
+            <div th:text="${card.description}"></div>
+            <div th:if="${card.dueDate}" th:text="'Due: ' + ${#temporals.format(card.dueDate, 'yyyy-MM-dd')}"></div>
+            <a th:href="@{/cards/{id}(id=${card.id})}">
+                <button type="button">Details</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
